@@ -16,6 +16,9 @@
 2. 程序内的3DTouch
 
 ```
+    self.registerForPreviewing(with: self, sourceView: self.tableView)
+
+
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let index = tableView.indexPathForRow(at: location)else{
             return nil
