@@ -18,12 +18,14 @@
     <link rel="dns-prefetch" href="https://kevinkyzheng.github.io">
     <!--SEO-->
 
-    <meta name="keywords" content="多线程">
+    <meta name="keywords" content="面试">
 
 
-    <meta name="description" content="串行并行,同步异步解释串行队列,并行队列
-同步任务,异步任务:同步任务不能开辟新线程,一个一个执行异步任务开辟新线程,一个没结束就可以执行下一个
-合理的情况:串行异步 不阻塞当前线程(主线程),...">
+    <meta name="description" content="链表
+双向链表的删除操作
+
+删除的两种情况:1.删除节点(节点的值等于给定值)2.删除给定指针指向的节点
+第一种情况,单链表还是双向链表都需要遍历,删除的时间复杂度是O(1),遍历的复杂度是O(...">
 
 
 
@@ -35,7 +37,7 @@
     <!--Title-->
 
 
-<title>多线程概念解释 | 暖梦的个人小站</title>
+<title>算法总结 | 暖梦的个人小站</title>
 
 
     <link rel="alternate" href="/atom.xml" title="暖梦的个人小站" type="application/atom+xml">
@@ -140,16 +142,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="多线程概念解释">
+        <h1 id="算法总结">
             
-	            多线程概念解释
+	            算法总结
             
         </h1>
         <div class="post-meta">
     
         <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/面试/">面试</a>
+            <a class="category-link" href="/categories/算法/">算法</a>
         </span>
     
 
@@ -158,7 +160,7 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
-                    <a class="tag-link" href="/tags/多线程/">多线程</a>
+                    <a class="tag-link" href="/tags/面试/">面试</a>
                 
             </span>
         </span>
@@ -178,22 +180,49 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="串行并行-同步异步解释"><a href="#串行并行-同步异步解释" class="headerlink" title="串行并行,同步异步解释"></a>串行并行,同步异步解释</h2><p>串行队列,并行队列</p>
-<p>同步任务,异步任务:<br>同步任务不能开辟新线程,一个一个执行<br>异步任务开辟新线程,一个没结束就可以执行下一个</p>
-<p>合理的情况:<br>串行异步 不阻塞当前线程(主线程),另外开辟一个线程一个一个执行<br>并行异步 也不阻塞当前线程(主线程),开辟多个线程,一起执行</p>
-<p>不合理:(同步都是阻塞当前线程)<br>并行同步 没意义,同串行同步,都是在主线程一个一个执行<br>串行同步 阻塞当前线程,一个一个执行,在其中再执行同步任务,会死锁</p>
-<p>开辟多线程的情况:<br>并行+异步 = 多条线程<br>自定义串行+异步 = 一条新线程<br>其余情况都在当前线程/主线程执行</p>
-<h2 id="队列组DispatchGroup"><a href="#队列组DispatchGroup" class="headerlink" title="队列组DispatchGroup"></a>队列组<code>DispatchGroup</code></h2><ul>
-<li>可以将一些任务加入到<em>Group</em>中,group中的任务全部执行完毕后,发送一个通知.</li>
-<li>组中的任务可以追加,只要任务没有全部完成,监听就不会被调用.</li>
-</ul>
-<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>信号量为0会阻塞线程,大于0不会阻塞线程.通过改变信号量的值,控制线程是否阻塞,达到线程同步的目的.应用如下:</p>
-<ol>
-<li>异步转同步<br>对异步耗时结果进行额外的操作,通过信号量来等待异步执行结果</li>
-<li>线程安全(锁)<br>多个线程操作同一个数据,dispatch_once内部使用了信号量,确保同一时间只有一个block在执行.</li>
-<li>控制并发数</li>
+        <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><ol>
+<li>双向链表的删除操作</li>
 </ol>
-<h2 id="栅栏函数"><a href="#栅栏函数" class="headerlink" title="栅栏函数"></a>栅栏函数</h2><p>阻塞队列中栅栏之前的任务.同步栅栏,阻塞当前线程.异步栅栏不阻塞当前线程.</p>
+<p>删除的两种情况:<br>1.删除节点(节点的值等于给定值)<br>2.删除给定指针指向的节点</p>
+<p>第一种情况,单链表还是双向链表都需要遍历,删除的时间复杂度是O(1),遍历的复杂度是O(n),因此结果还是O(n)<br>第二种情况,单链表是O(n),双链表是O(1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@discardableResult public func remove(node:Node) -&gt; Node?&#123;</span><br><span class="line">    let previous = node.previous</span><br><span class="line">    let next = node.next</span><br><span class="line">    </span><br><span class="line">    //判断之前的节点是否存在,不存在则说明删除的是头节点</span><br><span class="line">    if let pre = previous &#123;</span><br><span class="line">        pre.next = next</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        head?.next = next</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    next?.previous = previous</span><br><span class="line">    node.next = nil</span><br><span class="line">    node.previous = nil</span><br><span class="line">    return node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>双向列表的插入同删除,耗时操作主要发生在查找节点阶段.</p>
+</li>
+<li><p>对于有序链表,双向链表的查找操作,可以记录上次查找的位置p,并比较p节点的值与给定值的大小,平均只需要查一半的数据. (还没有自己实现过)</p>
+</li>
+<li><p>数组和链表的对比</p>
+<ul>
+<li>数组是连续的内存空间,可以借助CPU缓存机制,访问效率更高,而链表不行。</li>
+<li>数组的缺点，不支持动态扩容。</li>
+<li>链表的缺点，内存消耗翻倍，频繁的插入和删除，导致频繁的内存申请和释放，容易造成内存碎片。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="LRU缓存淘汰算法"><a href="#LRU缓存淘汰算法" class="headerlink" title="LRU缓存淘汰算法"></a>LRU缓存淘汰算法</h2><p>维护一个有序链表，越靠近尾部是越早访问的，当添加一个节点的时候，有三种情况：</p>
+<pre><code>1. 在链表中，则删除该节点，添加到头部
+2. 不在链表中，添加到头部
+3. 不在链表中，链表已满，删除尾部，添加到头部。
+</code></pre><hr>
+<h2 id="写链表的几点注意事项"><a href="#写链表的几点注意事项" class="headerlink" title="写链表的几点注意事项"></a>写链表的几点注意事项</h2><ol>
+<li>利用哨兵简化难度</li>
+<li>注意<strong>边界条件</strong>的处理<ul>
+<li>链表为空</li>
+<li>链表有一个节点</li>
+<li>链表有两个节点</li>
+<li>代码在处理<strong>头结点</strong>和<strong>尾节点</strong>时候的逻辑</li>
+</ul>
+</li>
+<li>几个需要熟练掌握的操作<ul>
+<li>单链表翻转</li>
+<li>链表中环的检测</li>
+<li>两个有序链表的合并</li>
+<li>删除链表倒数第n个节点</li>
+<li>求链表的中间节点</li>
+</ul>
+</li>
+</ol>
 
     </div>
     
@@ -211,15 +240,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/06/01/算法/字符串/" class="pre-post btn btn-default" title="字符串">
+        <a href="/2019/06/01/算法/线性表/" class="pre-post btn btn-default" title="线性表">
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">字符串</span>
+            <span class="hidden-xs">线性表</span>
         </a>
     
     
-        <a href="/2019/06/01/iOS开发/多线程API/" class="next-post btn btn-default" title="多线程常用API">
+        <a href="/2019/06/01/算法/字符串/" class="next-post btn btn-default" title="字符串">
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">多线程常用API</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">字符串</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -262,7 +291,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#串行并行-同步异步解释"><span class="toc-text">串行并行,同步异步解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列组DispatchGroup"><span class="toc-text">队列组DispatchGroup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号量"><span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栅栏函数"><span class="toc-text">栅栏函数</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#链表"><span class="toc-text">链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LRU缓存淘汰算法"><span class="toc-text">LRU缓存淘汰算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写链表的几点注意事项"><span class="toc-text">写链表的几点注意事项</span></a></li></ol></li></ol>
         
     </div>
 </aside>

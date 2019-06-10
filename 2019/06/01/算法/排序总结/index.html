@@ -18,12 +18,39 @@
     <link rel="dns-prefetch" href="https://kevinkyzheng.github.io">
     <!--SEO-->
 
-    <meta name="keywords" content="多线程">
+    <meta name="keywords" content="面试">
 
 
-    <meta name="description" content="串行并行,同步异步解释串行队列,并行队列
-同步任务,异步任务:同步任务不能开辟新线程,一个一个执行异步任务开辟新线程,一个没结束就可以执行下一个
-合理的情况:串行异步 不阻塞当前线程(主线程),...">
+    <meta name="description" content="
+
+
+
+
+
+种类
+时间复杂度
+是否基于比较
+
+
+
+
+比较,冒泡,选择
+\(n^2\)
+是
+
+
+快排,归并
+\(nlogn\)
+是
+
+
+桶排序,基数排序
+\(n\)
+否
+
+
+
+评价排序算法的几个角...">
 
 
 
@@ -35,7 +62,7 @@
     <!--Title-->
 
 
-<title>多线程概念解释 | 暖梦的个人小站</title>
+<title>排序 | 暖梦的个人小站</title>
 
 
     <link rel="alternate" href="/atom.xml" title="暖梦的个人小站" type="application/atom+xml">
@@ -140,16 +167,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="多线程概念解释">
+        <h1 id="排序">
             
-	            多线程概念解释
+	            排序
             
         </h1>
         <div class="post-meta">
     
         <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/面试/">面试</a>
+            <a class="category-link" href="/categories/算法/">算法</a>
         </span>
     
 
@@ -158,7 +185,7 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
-                    <a class="tag-link" href="/tags/多线程/">多线程</a>
+                    <a class="tag-link" href="/tags/面试/">面试</a>
                 
             </span>
         </span>
@@ -178,22 +205,104 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="串行并行-同步异步解释"><a href="#串行并行-同步异步解释" class="headerlink" title="串行并行,同步异步解释"></a>串行并行,同步异步解释</h2><p>串行队列,并行队列</p>
-<p>同步任务,异步任务:<br>同步任务不能开辟新线程,一个一个执行<br>异步任务开辟新线程,一个没结束就可以执行下一个</p>
-<p>合理的情况:<br>串行异步 不阻塞当前线程(主线程),另外开辟一个线程一个一个执行<br>并行异步 也不阻塞当前线程(主线程),开辟多个线程,一起执行</p>
-<p>不合理:(同步都是阻塞当前线程)<br>并行同步 没意义,同串行同步,都是在主线程一个一个执行<br>串行同步 阻塞当前线程,一个一个执行,在其中再执行同步任务,会死锁</p>
-<p>开辟多线程的情况:<br>并行+异步 = 多条线程<br>自定义串行+异步 = 一条新线程<br>其余情况都在当前线程/主线程执行</p>
-<h2 id="队列组DispatchGroup"><a href="#队列组DispatchGroup" class="headerlink" title="队列组DispatchGroup"></a>队列组<code>DispatchGroup</code></h2><ul>
-<li>可以将一些任务加入到<em>Group</em>中,group中的任务全部执行完毕后,发送一个通知.</li>
-<li>组中的任务可以追加,只要任务没有全部完成,监听就不会被调用.</li>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">是否基于比较</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">比较,冒泡,选择</td>
+<td style="text-align:center">\(n^2\)</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">快排,归并</td>
+<td style="text-align:center">\(nlogn\)</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">桶排序,基数排序</td>
+<td style="text-align:center">\(n\)</td>
+<td style="text-align:center">否</td>
+</tr>
+</tbody>
+</table>
+<h2 id="评价排序算法的几个角度"><a href="#评价排序算法的几个角度" class="headerlink" title="评价排序算法的几个角度"></a>评价排序算法的几个角度</h2><ol>
+<li>执行效率 <ul>
+<li>比较交换的次数</li>
+<li>时间复杂度的系数,常数,低阶,因为实际开发中数据规模小,这些系数等影响算法性能</li>
+<li>最好,最坏,平均时间复杂度</li>
 </ul>
-<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>信号量为0会阻塞线程,大于0不会阻塞线程.通过改变信号量的值,控制线程是否阻塞,达到线程同步的目的.应用如下:</p>
-<ol>
-<li>异步转同步<br>对异步耗时结果进行额外的操作,通过信号量来等待异步执行结果</li>
-<li>线程安全(锁)<br>多个线程操作同一个数据,dispatch_once内部使用了信号量,确保同一时间只有一个block在执行.</li>
-<li>控制并发数</li>
+</li>
+<li>内存消耗,即空间复杂度<blockquote>
+<p>原地排序,空间复杂度是O(1)的算法</p>
+</blockquote>
+</li>
+<li>稳定性<br> 在待排序的序列中存在等值元素,排序后等值元素顺序不变.<br> 应用:实际开发中,对一组对象按照某个key排序,eg:对订单排序,其中有下单时间和订单金额.</li>
 </ol>
-<h2 id="栅栏函数"><a href="#栅栏函数" class="headerlink" title="栅栏函数"></a>栅栏函数</h2><p>阻塞队列中栅栏之前的任务.同步栅栏,阻塞当前线程.异步栅栏不阻塞当前线程.</p>
+<h3 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h3><ol>
+<li>原地排序</li>
+<li>稳定,换对于相等元素,不交</li>
+<li>最好时间复杂度O(1),最坏O(//(n^2//),平均O(n\(n^2\)),最好情况,冒泡一次结束</li>
+</ol>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><ol>
+<li>原地</li>
+<li>稳定,相等元素,后出现的插在先出现的后面<br><strong>3. 最好时间复杂度O(1),最坏O(//(n^2//),平均O(n\(n^2\))</strong>不理解</li>
+</ol>
+<h3 id="冒泡-插入-选择"><a href="#冒泡-插入-选择" class="headerlink" title="冒泡,插入,选择"></a>冒泡,插入,选择</h3><ol>
+<li><p>原地排序</p>
+</li>
+<li><p>最好时间复杂度O(1),最坏O(//(n^2//),平均O(n\(n^2\)),最好情况,冒泡一次结束</p>
+</li>
+</ol>
+<p>选择的最好最坏平均都是(//(n^2//)</p>
+<ol start="3">
+<li>冒泡和插入 稳定排序<br>选择    不稳定排序<blockquote>
+<p>冒泡:对于相等元素,不交换<br>插入:相等元素,后出现的插在先出现的后面<br>选择:例如5,8,5,2,9 第一次交换第一个5就被交换到后面了</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="插入好于冒泡的原因"><a href="#插入好于冒泡的原因" class="headerlink" title="插入好于冒泡的原因"></a>插入好于冒泡的原因</h4><p><em>冒泡</em>的交换次数和<em>插入</em>的移动次数都等于原始数据的逆序度,无法优化.</p>
+<p>但是,冒泡需要三个赋值操作,插入需要一个赋值操作</p>
+<p>插入排序的优化,希尔排序</p>
+<hr>
+<h5 id="课后习题-基于链表实现的排序"><a href="#课后习题-基于链表实现的排序" class="headerlink" title="课后习题: 基于链表实现的排序"></a>课后习题: 基于链表实现的排序</h5><p>三者,比较次数一致,冒泡和选择,交换操作复杂,插入交换操作简单,直接插入不需要移动数组</p>
+<hr>
+<h2 id="归并的性能分析"><a href="#归并的性能分析" class="headerlink" title="归并的性能分析"></a>归并的性能分析</h2><ol>
+<li>稳定性</li>
+<li>时间复杂度</li>
+<li>空间复杂度</li>
+</ol>
+<h2 id="归并和快排的差异"><a href="#归并和快排的差异" class="headerlink" title="归并和快排的差异"></a>归并和快排的差异</h2><p>归并是由下到上,先处理子问题,再合并<br>快排是由上到下,先分区再处理子问题</p>
+<h2 id="快排的性能分析"><a href="#快排的性能分析" class="headerlink" title="快排的性能分析"></a>快排的性能分析</h2><ol>
+<li>稳定性 不稳定</li>
+<li>时间复杂度</li>
+<li>空间复杂度 原地</li>
+</ol>
+<p>归并的重点: 是递推公式和merge()合并函数<br>快排的重点: 是递推公式和partition()分区函数</p>
+<hr>
+<p>线性排序<br>时间复杂度是线性</p>
+<p>桶排序,计数排序,基数排序</p>
+<p>桶排序对数据要求:</p>
+<ol>
+<li>能很容易分成m个桶</li>
+<li>桶与桶之间有天然大小顺序</li>
+<li>数据再每个桶之间的分布是均匀的</li>
+</ol>
+<p>适用于外部排序:数据储存在磁盘中,数据量大,内存有限</p>
+<p>基数排序对数据的要求:</p>
+<ol>
+<li>可以分割出独立的位</li>
+<li>位之间有递进关系</li>
+<li>每一位的数据范围不能太大,可以用线性算法排序,否则时间复杂度无法是O(n)</li>
+</ol>
 
     </div>
     
@@ -211,15 +320,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/06/01/算法/字符串/" class="pre-post btn btn-default" title="字符串">
+        <a href="/2019/06/01/算法/散列表/" class="pre-post btn btn-default" title="散列表">
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">字符串</span>
+            <span class="hidden-xs">散列表</span>
         </a>
     
     
-        <a href="/2019/06/01/iOS开发/多线程API/" class="next-post btn btn-default" title="多线程常用API">
+        <a href="/2019/06/01/算法/线性表/" class="next-post btn btn-default" title="线性表">
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">多线程常用API</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">线性表</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
@@ -262,7 +371,7 @@
     <div class="widget">
         <h3 class="title">Table of Contents</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#串行并行-同步异步解释"><span class="toc-text">串行并行,同步异步解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列组DispatchGroup"><span class="toc-text">队列组DispatchGroup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号量"><span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栅栏函数"><span class="toc-text">栅栏函数</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#评价排序算法的几个角度"><span class="toc-text">评价排序算法的几个角度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡"><span class="toc-text">冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入"><span class="toc-text">插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡-插入-选择"><span class="toc-text">冒泡,插入,选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#插入好于冒泡的原因"><span class="toc-text">插入好于冒泡的原因</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#课后习题-基于链表实现的排序"><span class="toc-text">课后习题: 基于链表实现的排序</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并的性能分析"><span class="toc-text">归并的性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并和快排的差异"><span class="toc-text">归并和快排的差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快排的性能分析"><span class="toc-text">快排的性能分析</span></a></li></ol>
         
     </div>
 </aside>

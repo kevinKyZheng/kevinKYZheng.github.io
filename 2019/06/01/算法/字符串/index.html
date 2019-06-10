@@ -18,10 +18,16 @@
     <link rel="dns-prefetch" href="https://kevinkyzheng.github.io">
     <!--SEO-->
 
-    <meta name="keywords" content="iOS">
+    <meta name="keywords" content="面试">
 
 
-    <meta name="description" content>
+    <meta name="description" content="RK算法
+整数太大超过范围,可以允许冲突.冲突的解决,hash值相等的话,再比较子串.
+
+冲突太多,时间复杂度退化到O(n)
+
+
+BF RK BM KMP 单模式串Trie树 AC自动机  多模...">
 
 
 
@@ -33,7 +39,7 @@
     <!--Title-->
 
 
-<title>Tag: 动画 | 暖梦的个人小站</title>
+<title>字符串 | 暖梦的个人小站</title>
 
 
     <link rel="alternate" href="/atom.xml" title="暖梦的个人小站" type="application/atom+xml">
@@ -134,43 +140,112 @@
     <section class="content-wrap">
         <div class="container">
             <div class="row">
-                <main class="col-md-8 main-content ">
-                    <ol class="breadcrumb">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="字符串">
+            
+	            字符串
+            
+        </h1>
+        <div class="post-meta">
     
-    
-        <li>
-            动画
-        </li>
-    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/算法/">算法</a>
+        </span>
     
 
-</ol>
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/面试/">面试</a>
+                
+            </span>
+        </span>
+    
 
-
-    <article class="post">
+    
         
-        <div class="post-content">
-            <div class="post-head home-post-head">
-                <h1 class="post-title">
-                    <a href="/2019/06/01/iOS开发/iOS动画/">iOS动画</a>
-                </h1>
-                <div class="post-meta">  &bull;
-                    <time class="post-date" datetime title>
-                        2019年06月01日
-                    </time>
-                </div>
-            </div>
-            <p class="brief">
-                
-                    UIView动画包括普通动画,弹性动画,key动画和Transition,
-12//弹性动画UIView.animate(withDuration: TimeInterval, delay: TimeInterval, usingSp...
-                
-            </p>
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/01</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="RK算法"><a href="#RK算法" class="headerlink" title="RK算法"></a>RK算法</h1><ol>
+<li><p>整数太大超过范围,可以允许冲突.冲突的解决,hash值相等的话,再比较子串.</p>
+</li>
+<li><p>冲突太多,时间复杂度退化到O(n)</p>
+</li>
+</ol>
+<p>BF RK BM KMP 单模式串<br>Trie树 AC自动机  多模式串</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
         </div>
-    </article>
- 
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/01/算法/算法总结/" class="pre-post btn btn-default" title="算法总结">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">算法总结</span>
+        </a>
+    
+    
+        <a href="/2019/06/01/iOS开发/多线程概念解释/" class="next-post btn btn-default" title="多线程概念解释">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">多线程概念解释</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
 
 
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-Hans'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
 
 
 
@@ -178,92 +253,14 @@
 
                 </main>
                 
-                    
-    <aside class="col-md-4 sidebar">
-        
-        
+                    <aside id="article-toc" role="navigation" class="col-md-4">
     <div class="widget">
-        <h3 class="title">Search</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                    <input id="search-key" type="search" autocomplete="off" placeholder="Search What？">
-                    <button type="button" class="search-form-submit" id="search-local">localSearch</button>
-                
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
+        <h3 class="title">Table of Contents</h3>
         
-        
-        
-        
-    <div class="widget">
-      <h3 class="title">Social</h3> 
-        <div class="content social">
-            
-	            <a href="//github.com/kevinKyZheng" rel="external nofollow" title="Github" target="_blank">
-			    	<i class="git fa fa-git"></i>
-			    </a>
-            
-	            <a href="mailto:13147740719@163.com" rel="external nofollow" title="邮箱" target="_blank">
-			    	<i class="envelope-o fa fa-envelope-o"></i>
-			    </a>
-            
-        </div>
-    </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">Categories</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/"><i class="fa" aria-hidden="true">iOS</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/iOS开发/"><i class="fa" aria-hidden="true">iOS开发</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/"><i class="fa" aria-hidden="true">算法</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/"><i class="fa" aria-hidden="true">面试</i></a><span class="category-list-count">3</span></li></ul>
-    </div>
-
-
-        
-        
-    <div class="widget">
-        <h3 class="title">Archives</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/"><i class="fa" aria-hidden="true">2019年06月</i></a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/"><i class="fa" aria-hidden="true">2019年05月</i></a><span class="archive-list-count">4</span></li></ul>
-    </div>
-
-
-        
-        
-  <div class="widget">
-    <h3 class="title">Tag Cloud</h3>
-    <div class="content tag-cloud">
-        
-            <a href="/tags/3DTouch/" style="font-size: 10px;">3DTouch</a> <a href="/tags/RunLoop/" style="font-size: 10px;">RunLoop</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/动画/" style="font-size: 10px;">动画</a> <a href="/tags/多线程/" style="font-size: 10px;">多线程</a> <a href="/tags/多线程-面试/" style="font-size: 10px;">多线程 面试</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RK算法"><span class="toc-text">RK算法</span></a></li></ol>
         
     </div>
-  </div>
-
-
-        
-        
-
-        
-        
-        
-    </aside>
+</aside>
 
                 
             </div>
@@ -306,8 +303,6 @@
     </div>
 </div>
 
-
-	<script src="/js/search.js?rev=@@hash"></script>
 
 
 
