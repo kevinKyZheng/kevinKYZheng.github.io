@@ -111,9 +111,59 @@ repeatDuration//反复执行的时间
 autoreverses//倒着执行
 ```
 
-
-
-
 ### 动画和实际内容
 
 动画一个view的时候,真实的view是被隐藏了的,被动画的是一个复制的view;当动画完成时,原来的view显示,执行动画的view隐藏.因此`isRemovedOnCompletion`属性就是控制执行动画的view是否隐藏,默认是true隐藏.但是尽量不要使用这个属性.
+
+### CASpringAnimation
+
+layer层的弹性动画,设置方法基本一样如下,有一些特殊属性值
+
+```swift
+let flash = CASpringAnimation(keyPath: "borderColor")
+flash.damping = 7.0
+flash.stiffness = 200.0
+flash.fromValue = UIColor(red: 1.0, green: 0.27, blue: 0.0, alpha: 1.0).cgColor
+flash.toValue = UIColor.white.cgColor
+flash.duration = flash.settlingDuration
+blue.layer.add(flash, forKey: nil)
+```
+
+#### 处理结构体的属性
+
+在swift中结构体和class没啥区别,但是coreAnimation是建立在OC的基础上的,在OC中,结构体很不同,要包裹起来,例如CGPoint,CGRect,CATransform3D
+
+## 特殊的图层动画
+
+1. GradientLayer
+渐变层:可以控的属性:locations,colors,
+
+## 转场动画
+
+1. 要过来的控制器实现代理
+
+```swift
+vc.transitioningDelegate = self
+```
+
+2. 两个代理方法,一个是要被转入的时候,一个是被推出的时候;
+返回的是一个实现了`UIViewControllerAnimatedTransitioning`协议的对象
+
+```swift
+public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source:
+UIViewController) -> UIViewControllerAnimatedTransitioning
+
+func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? 
+```
+
+3. `UIViewControllerAnimatedTransitioning`协议中的方法,transition开始的时候,当下的view加到一个container中,新view被创建但是不显示
+
+```swift
+//过场时间
+transitionDuration
+//过场时的动作
+animateTransition{
+let containerView = transitionContext.containerView
+let toView = transitionContext.view(forKey: .to)!
+}
+```
