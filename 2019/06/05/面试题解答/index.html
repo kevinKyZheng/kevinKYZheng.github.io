@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="暖梦的个人小站">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://kevinkyzheng.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="iOS">
+
+
+    <meta name="description" content="http协议
+http的post和get啥区别
+
+提交方式:GET把请求数据放在URL后,POST放在body中
+传输数据大小:GET:HTTP协议没有限制,但是浏览器有;POST理论上不受限制...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>面试题解答 | 暖梦的个人小站</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="暖梦的个人小站" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="开元">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://kevinkyzheng.github.io">暖梦的个人小站</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="面试题解答">
+            
+	            面试题解答
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/05</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h2><ol>
+<li><p>http的post和get啥区别</p>
+<ul>
+<li>提交方式:<br>GET把请求数据放在URL后,POST放在body中</li>
+<li>传输数据大小:<br>GET:HTTP协议没有限制,但是浏览器有;POST理论上不受限制,web服务器限制;</li>
+<li>安全:GET提交数据,用户名密码将明文出现在URL上.</li>
+</ul>
+</li>
+<li><p>http长连接</p>
+<ul>
+<li>HTTP/1.0默认是短连接,浏览器和服务器进行HTTP操作,就建立连接,任务结束就中断.</li>
+<li>HTTP/1.1默认是长连接,在响应头中加入<code>Connection:keep-alive</code>,用于传输HTTP的TCP链接不会中断.</li>
+</ul>
+</li>
+<li><p>聊下HTTP的POST的body体使用form-urlencoded和multipart/form-data的区别<br> post提交的数据是放在body中的,http协议没有规定其编码方式,服务端要根据请求体(header)中的content-Type来得知body中的编码方式.</p>
+<ul>
+<li>form-urlencode:表单数据被编码为键值对(name=myName&amp;password=myPassword),默认是这种.</li>
+<li>multipart/form-data:单个消息头包含多个消息体的解决方案,一般用于上传图片等,请求头<code>Content-Type: multipart/form-data; boundary=${bound}</code>,请求体要有分隔符和参数描述信息.</li>
+<li>application/json 告诉服务端,body是序列化的字符串.</li>
+</ul>
+</li>
+<li><p>HTTPS的加密原理</p>
+</li>
+<li>网络通讯中加密方式有哪些，各自的原理</li>
+</ol>
+<h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><ol>
+<li>使用 atomic 一定是线程安全的么?<br>原子性只是增加了正确的几率,不保证线程安全.atomic保证了getter和setting方法的线程安全,不保证整个对象的线程安全.例如对数组,一个线程写数据,一个线程读数据,就不是线程安全,因为跟setter和getter没有关系.</li>
+</ol>
+<h2 id="未分类"><a href="#未分类" class="headerlink" title="未分类"></a>未分类</h2><ol>
+<li><p>通过[UIImage imageNamed:]生成的对象什么时候被释放?<br>通过这个方法,系统现在bundle中找,找到了就加到缓存,用来重复调用,因此可能有内存问题.该方法返回的是个autorelease对象,不一定在引用计数0的时候释放,实在autoreleasepool结束的时候释放</p>
+</li>
+<li><p>iOS下所有的本地持久化方案。</p>
+</li>
+<li><p>applicationWillEnterForeground和applicationDidBecomeActive都会在哪些场景下被调用?</p>
+<p> 缓存,URL缓存<br> <a href="https://www.geekpeer.com/Development/ios/3080.html" target="_blank" rel="noopener">https://www.geekpeer.com/Development/ios/3080.html</a><br> <a href="https://blog.csdn.net/liulanghk/article/details/46432931" target="_blank" rel="noopener">https://blog.csdn.net/liulanghk/article/details/46432931</a></p>
+</li>
+<li><p>使用SDWebImage内存暴涨解决方法</p>
+<ul>
+<li>在setImageWithUrl回调里对图片进行压缩.</li>
+<li><code>[[SDWebImageDownloader sharedDownloader setShouldDecompressImages:NO];</code>禁止解压缩操作</li>
+<li>在dealloc中清楚缓存或者<code>didReceiveMemoryWarning</code>在收到内存警告的时候释放</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/10/iOS开发/Dispatch使用总结/" class="pre-post btn btn-default" title>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs"></span>
+        </a>
+    
+    
+        <a href="/2019/06/01/iOS开发/Runtime总结/" class="next-post btn btn-default" title="Runtime常用API">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Runtime常用API</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-Hans'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#http协议"><span class="toc-text">http协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程"><span class="toc-text">线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#未分类"><span class="toc-text">未分类</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

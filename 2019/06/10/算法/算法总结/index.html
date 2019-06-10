@@ -1,0 +1,347 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="暖梦的个人小站">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://kevinkyzheng.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="iOS">
+
+
+    <meta name="description" content="链表
+双向链表的删除操作
+
+删除的两种情况:1.删除节点(节点的值等于给定值)2.删除给定指针指向的节点
+第一种情况,单链表还是双向链表都需要遍历,删除的时间复杂度是O(1),遍历的复杂度是O(...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>暖梦的个人小站</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="暖梦的个人小站" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="开元">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://kevinkyzheng.github.io">暖梦的个人小站</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id>
+            
+	            NO Title!
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/10</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><ol>
+<li>双向链表的删除操作</li>
+</ol>
+<p>删除的两种情况:<br>1.删除节点(节点的值等于给定值)<br>2.删除给定指针指向的节点</p>
+<p>第一种情况,单链表还是双向链表都需要遍历,删除的时间复杂度是O(1),遍历的复杂度是O(n),因此结果还是O(n)<br>第二种情况,单链表是O(n),双链表是O(1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@discardableResult public func remove(node:Node) -&gt; Node?&#123;</span><br><span class="line">    let previous = node.previous</span><br><span class="line">    let next = node.next</span><br><span class="line">    </span><br><span class="line">    //判断之前的节点是否存在,不存在则说明删除的是头节点</span><br><span class="line">    if let pre = previous &#123;</span><br><span class="line">        pre.next = next</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        head?.next = next</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    next?.previous = previous</span><br><span class="line">    node.next = nil</span><br><span class="line">    node.previous = nil</span><br><span class="line">    return node</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>双向列表的插入同删除,耗时操作主要发生在查找节点阶段.</p>
+</li>
+<li><p>对于有序链表,双向链表的查找操作,可以记录上次查找的位置p,并比较p节点的值与给定值的大小,平均只需要查一半的数据. (还没有自己实现过)</p>
+</li>
+<li><p>数组和链表的对比</p>
+<ul>
+<li>数组是连续的内存空间,可以借助CPU缓存机制,访问效率更高,而链表不行。</li>
+<li>数组的缺点，不支持动态扩容。</li>
+<li>链表的缺点，内存消耗翻倍，频繁的插入和删除，导致频繁的内存申请和释放，容易造成内存碎片。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="LRU缓存淘汰算法"><a href="#LRU缓存淘汰算法" class="headerlink" title="LRU缓存淘汰算法"></a>LRU缓存淘汰算法</h2><p>维护一个有序链表，越靠近尾部是越早访问的，当添加一个节点的时候，有三种情况：</p>
+<pre><code>1. 在链表中，则删除该节点，添加到头部
+2. 不在链表中，添加到头部
+3. 不在链表中，链表已满，删除尾部，添加到头部。
+</code></pre><hr>
+<h2 id="写链表的几点注意事项"><a href="#写链表的几点注意事项" class="headerlink" title="写链表的几点注意事项"></a>写链表的几点注意事项</h2><ol>
+<li>利用哨兵简化难度</li>
+<li>注意<strong>边界条件</strong>的处理<ul>
+<li>链表为空</li>
+<li>链表有一个节点</li>
+<li>链表有两个节点</li>
+<li>代码在处理<strong>头结点</strong>和<strong>尾节点</strong>时候的逻辑</li>
+</ul>
+</li>
+<li>几个需要熟练掌握的操作<ul>
+<li>单链表翻转</li>
+<li>链表中环的检测</li>
+<li>两个有序链表的合并</li>
+<li>删除链表倒数第n个节点</li>
+<li>求链表的中间节点</li>
+</ul>
+</li>
+</ol>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/10/算法/线性表/" class="pre-post btn btn-default" title>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs"></span>
+        </a>
+    
+    
+        <a href="/2019/06/10/算法/散列表/" class="next-post btn btn-default" title>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs"></span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-Hans'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#链表"><span class="toc-text">链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LRU缓存淘汰算法"><span class="toc-text">LRU缓存淘汰算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写链表的几点注意事项"><span class="toc-text">写链表的几点注意事项</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="暖梦的个人小站">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://kevinkyzheng.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="多线程">
+
+
+    <meta name="description" content="串行并行,同步异步解释串行队列,并行队列
+同步任务,异步任务:同步任务不能开辟新线程,一个一个执行异步任务开辟新线程,一个没结束就可以执行下一个
+合理的情况:串行异步 不阻塞当前线程(主线程),...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>多线程概念解释 | 暖梦的个人小站</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="暖梦的个人小站" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="开元">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://kevinkyzheng.github.io">暖梦的个人小站</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="多线程概念解释">
+            
+	            多线程概念解释
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/面试/">面试</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/多线程/">多线程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/01</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="串行并行-同步异步解释"><a href="#串行并行-同步异步解释" class="headerlink" title="串行并行,同步异步解释"></a>串行并行,同步异步解释</h2><p>串行队列,并行队列</p>
+<p>同步任务,异步任务:<br>同步任务不能开辟新线程,一个一个执行<br>异步任务开辟新线程,一个没结束就可以执行下一个</p>
+<p>合理的情况:<br>串行异步 不阻塞当前线程(主线程),另外开辟一个线程一个一个执行<br>并行异步 也不阻塞当前线程(主线程),开辟多个线程,一起执行</p>
+<p>不合理:(同步都是阻塞当前线程)<br>并行同步 没意义,同串行同步,都是在主线程一个一个执行<br>串行同步 阻塞当前线程,一个一个执行,在其中再执行同步任务,会死锁</p>
+<p>开辟多线程的情况:<br>并行+异步 = 多条线程<br>自定义串行+异步 = 一条新线程<br>其余情况都在当前线程/主线程执行</p>
+<h2 id="队列组DispatchGroup"><a href="#队列组DispatchGroup" class="headerlink" title="队列组DispatchGroup"></a>队列组<code>DispatchGroup</code></h2><ul>
+<li>可以将一些任务加入到<em>Group</em>中,group中的任务全部执行完毕后,发送一个通知.</li>
+<li>组中的任务可以追加,只要任务没有全部完成,监听就不会被调用.</li>
+</ul>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>信号量为0会阻塞线程,大于0不会阻塞线程.通过改变信号量的值,控制线程是否阻塞,达到线程同步的目的.应用如下:</p>
+<ol>
+<li>异步转同步<br>对异步耗时结果进行额外的操作,通过信号量来等待异步执行结果</li>
+<li>线程安全(锁)<br>多个线程操作同一个数据,dispatch_once内部使用了信号量,确保同一时间只有一个block在执行.</li>
+<li>控制并发数</li>
+</ol>
+<h2 id="栅栏函数"><a href="#栅栏函数" class="headerlink" title="栅栏函数"></a>栅栏函数</h2><p>阻塞队列中栅栏之前的任务.同步栅栏,阻塞当前线程.异步栅栏不阻塞当前线程.</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/01/iOS开发/多线程API/" class="pre-post btn btn-default" title="多线程常用API">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">多线程常用API</span>
+        </a>
+    
+    
+        <a href="/2019/05/31/iOS开发/Runloop理解/" class="next-post btn btn-default" title="RunLoop">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">RunLoop</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-Hans'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#串行并行-同步异步解释"><span class="toc-text">串行并行,同步异步解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#队列组DispatchGroup"><span class="toc-text">队列组DispatchGroup</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#信号量"><span class="toc-text">信号量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栅栏函数"><span class="toc-text">栅栏函数</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

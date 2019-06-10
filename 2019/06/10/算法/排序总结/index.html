@@ -1,0 +1,427 @@
+<!DOCTYPE HTML>
+<html lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="暖梦的个人小站">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="https://kevinkyzheng.github.io">
+    <!--SEO-->
+
+    <meta name="keywords" content="iOS">
+
+
+    <meta name="description" content="
+
+
+
+
+
+种类
+时间复杂度
+是否基于比较
+
+
+
+
+比较,冒泡,选择
+\(n^2\)
+是
+
+
+快排,归并
+\(nlogn\)
+是
+
+
+桶排序,基数排序
+\(n\)
+否
+
+
+
+评价排序算法的几个角...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>暖梦的个人小站</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="暖梦的个人小站" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="开元">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="https://kevinkyzheng.github.io">暖梦的个人小站</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id>
+            
+	            NO Title!
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/10</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">种类</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">是否基于比较</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">比较,冒泡,选择</td>
+<td style="text-align:center">\(n^2\)</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">快排,归并</td>
+<td style="text-align:center">\(nlogn\)</td>
+<td style="text-align:center">是</td>
+</tr>
+<tr>
+<td style="text-align:center">桶排序,基数排序</td>
+<td style="text-align:center">\(n\)</td>
+<td style="text-align:center">否</td>
+</tr>
+</tbody>
+</table>
+<h2 id="评价排序算法的几个角度"><a href="#评价排序算法的几个角度" class="headerlink" title="评价排序算法的几个角度"></a>评价排序算法的几个角度</h2><ol>
+<li>执行效率 <ul>
+<li>比较交换的次数</li>
+<li>时间复杂度的系数,常数,低阶,因为实际开发中数据规模小,这些系数等影响算法性能</li>
+<li>最好,最坏,平均时间复杂度</li>
+</ul>
+</li>
+<li>内存消耗,即空间复杂度<blockquote>
+<p>原地排序,空间复杂度是O(1)的算法</p>
+</blockquote>
+</li>
+<li>稳定性<br> 在待排序的序列中存在等值元素,排序后等值元素顺序不变.<br> 应用:实际开发中,对一组对象按照某个key排序,eg:对订单排序,其中有下单时间和订单金额.</li>
+</ol>
+<h3 id="冒泡"><a href="#冒泡" class="headerlink" title="冒泡"></a>冒泡</h3><ol>
+<li>原地排序</li>
+<li>稳定,换对于相等元素,不交</li>
+<li>最好时间复杂度O(1),最坏O(//(n^2//),平均O(n\(n^2\)),最好情况,冒泡一次结束</li>
+</ol>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><ol>
+<li>原地</li>
+<li>稳定,相等元素,后出现的插在先出现的后面<br><strong>3. 最好时间复杂度O(1),最坏O(//(n^2//),平均O(n\(n^2\))</strong>不理解</li>
+</ol>
+<h3 id="冒泡-插入-选择"><a href="#冒泡-插入-选择" class="headerlink" title="冒泡,插入,选择"></a>冒泡,插入,选择</h3><ol>
+<li><p>原地排序</p>
+</li>
+<li><p>最好时间复杂度O(1),最坏O(//(n^2//),平均O(n\(n^2\)),最好情况,冒泡一次结束</p>
+</li>
+</ol>
+<p>选择的最好最坏平均都是(//(n^2//)</p>
+<ol start="3">
+<li>冒泡和插入 稳定排序<br>选择    不稳定排序<blockquote>
+<p>冒泡:对于相等元素,不交换<br>插入:相等元素,后出现的插在先出现的后面<br>选择:例如5,8,5,2,9 第一次交换第一个5就被交换到后面了</p>
+</blockquote>
+</li>
+</ol>
+<h4 id="插入好于冒泡的原因"><a href="#插入好于冒泡的原因" class="headerlink" title="插入好于冒泡的原因"></a>插入好于冒泡的原因</h4><p><em>冒泡</em>的交换次数和<em>插入</em>的移动次数都等于原始数据的逆序度,无法优化.</p>
+<p>但是,冒泡需要三个赋值操作,插入需要一个赋值操作</p>
+<p>插入排序的优化,希尔排序</p>
+<hr>
+<h5 id="课后习题-基于链表实现的排序"><a href="#课后习题-基于链表实现的排序" class="headerlink" title="课后习题: 基于链表实现的排序"></a>课后习题: 基于链表实现的排序</h5><p>三者,比较次数一致,冒泡和选择,交换操作复杂,插入交换操作简单,直接插入不需要移动数组</p>
+<hr>
+<h2 id="归并的性能分析"><a href="#归并的性能分析" class="headerlink" title="归并的性能分析"></a>归并的性能分析</h2><ol>
+<li>稳定性</li>
+<li>时间复杂度</li>
+<li>空间复杂度</li>
+</ol>
+<h2 id="归并和快排的差异"><a href="#归并和快排的差异" class="headerlink" title="归并和快排的差异"></a>归并和快排的差异</h2><p>归并是由下到上,先处理子问题,再合并<br>快排是由上到下,先分区再处理子问题</p>
+<h2 id="快排的性能分析"><a href="#快排的性能分析" class="headerlink" title="快排的性能分析"></a>快排的性能分析</h2><ol>
+<li>稳定性 不稳定</li>
+<li>时间复杂度</li>
+<li>空间复杂度 原地</li>
+</ol>
+<p>归并的重点: 是递推公式和merge()合并函数<br>快排的重点: 是递推公式和partition()分区函数</p>
+<hr>
+<p>线性排序<br>时间复杂度是线性</p>
+<p>桶排序,计数排序,基数排序</p>
+<p>桶排序对数据要求:</p>
+<ol>
+<li>能很容易分成m个桶</li>
+<li>桶与桶之间有天然大小顺序</li>
+<li>数据再每个桶之间的分布是均匀的</li>
+</ol>
+<p>适用于外部排序:数据储存在磁盘中,数据量大,内存有限</p>
+<p>基数排序对数据的要求:</p>
+<ol>
+<li>可以分割出独立的位</li>
+<li>位之间有递进关系</li>
+<li>每一位的数据范围不能太大,可以用线性算法排序,否则时间复杂度无法是O(n)</li>
+</ol>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/10/算法/散列表/" class="pre-post btn btn-default" title>
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs"></span>
+        </a>
+    
+    
+        <a href="/2019/06/10/前端/Js展开语法/" class="next-post btn btn-default" title>
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs"></span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: true,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-Hans'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">Table of Contents</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#评价排序算法的几个角度"><span class="toc-text">评价排序算法的几个角度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡"><span class="toc-text">冒泡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入"><span class="toc-text">插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡-插入-选择"><span class="toc-text">冒泡,插入,选择</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#插入好于冒泡的原因"><span class="toc-text">插入好于冒泡的原因</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#课后习题-基于链表实现的排序"><span class="toc-text">课后习题: 基于链表实现的排序</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并的性能分析"><span class="toc-text">归并的性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并和快排的差异"><span class="toc-text">归并和快排的差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快排的性能分析"><span class="toc-text">快排的性能分析</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
